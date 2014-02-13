@@ -5,7 +5,6 @@ ruleset Exercise1 {
         logging off
     }
     dispatch {
-        // domain "exampley.com"
     }
     rule first_rule {
         select when pageview ".*"
