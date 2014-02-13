@@ -11,6 +11,7 @@ ruleset Exercise1 {
         select when pageview ".*" setting ()
         // Display notification that will not fade.
         {
+            notify("Notification 1", "Hi there!") with sticky = true and position = "top-left";
             notify("Notification 2", "Yeah, I said hello") with sticky = true;
         }
     }
