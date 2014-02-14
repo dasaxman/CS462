@@ -28,7 +28,7 @@ ruleset Exercise1 {
         }
         if x <= 5 then 
             notify("Counting notification", "Appeared " + x + " times") with sticky = true and position = "bottom-left";
-        post {
+        always {
             ent:count += 1 from 0;
         }
     }
