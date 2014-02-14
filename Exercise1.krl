@@ -26,8 +26,10 @@ ruleset Exercise1 {
         pre {
             x = ent:count + 1;
         }
-            if x <= 5 then 
-                notify("Counting notification", "Appeared " + x + " times") with sticky = true and position = "bottom-left";
-            
+        if x <= 5 then 
+            notify("Counting notification", "Appeared " + x + " times") with sticky = true and position = "bottom-left";
+        post {
+            ent:count += 1 from 0;
+        }
     }
 }
