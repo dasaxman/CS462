@@ -13,12 +13,13 @@ ruleset Exercise1 {
         select when pageview ".*"
         pre {
             name = (query_name(page:url("query")) != []) => query_name(page:url("query")) | "Monkey";
+            test = query_name(page:url("query");
         }
         {
             notify("Notification 1", "Hi there.") with sticky = true and position = "top-left";
             notify("Notification 2", "Yeah, you.") with sticky = true;
             notify("Notification 3", "Hello " + name) with sticky = true and position = "bottom-right";
-            notify("Notification 4", query_name(page:url("query"))) with sticky = true and position = "bottom-left";
+            notify("Notification 4", test) with sticky = true and position = "bottom-left";
         }
     }
 }
