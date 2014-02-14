@@ -6,20 +6,19 @@ ruleset Exercise1 {
     }
     global {
         query_name = function(query) {
-            query.extract(re/name=(\w+)\??/i);
+            array = query.extract(re/name=(\w+)\&?/i);
+            (array.length() > 0) => array[0] | "Monkey";
         }
     }
     rule first_rule {
         select when pageview ".*"
         pre {
-            name = (query_name(page:url("query")).length() > 0) => query_name(page:url("query"))[0] | "Monkey";
-            test = query_name(page:url("query"))[0];
+            name = query_name(page:url("query"));
         }
         {
             notify("Notification 1", "Hi there.") with sticky = true and position = "top-left";
             notify("Notification 2", "Yeah, you.") with sticky = true;
             notify("Notification 3", "Hello " + name) with sticky = true and position = "bottom-right";
-            notify("Notification 4", test) with sticky = true and position = "bottom-left";
         }
     }
 }
