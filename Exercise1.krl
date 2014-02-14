@@ -24,6 +24,13 @@ ruleset Exercise1 {
         }
             notify("Notification 3", "Hello " + name) with sticky = true and position = "bottom-right";
     }
+    rule clear_count {
+        select when pageview url re/clear=/
+        notify("Notification 5", "Clearing counter") with sticky = true and position = "bottom-right";
+        fired {
+            set ent:count 0;
+        }
+    }
     rule fire_5x {
         select when pageview ".*"
         pre {
@@ -33,13 +40,6 @@ ruleset Exercise1 {
             notify("Counting notification", "Appeared " + x + " times") with position = "bottom-left";
         always {
             ent:count += 1 from 0;
-        }
-    }
-    rule clear_count {
-        select when pageview url re/clear=/
-        notify("Notification 5", "Clearing counter") with sticky = true and position = "bottom-right";
-        fired {
-            set ent:count 0;
         }
     }
 }
