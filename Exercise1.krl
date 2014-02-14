@@ -24,6 +24,9 @@ ruleset Exercise1 {
     rule clear_count {
         select when pageview url re/clear=/
         notify("Notification 5", "Clearing counter") with sticky = true and position = "bottom-right";
+        fired {
+            set ent:count 0;
+        }
     }
     rule fire_5x {
         select when pageview ".*"
