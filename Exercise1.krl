@@ -6,14 +6,14 @@ ruleset Exercise1 {
     }
     global {
         query_name = function(query) {
-            query.extract(re/name=(\w+)\?*/);
+            query.extract(re/name=(\w+)\??/i);
         }
     }
     rule first_rule {
         select when pageview ".*"
         pre {
-            name = (query_name(page:url("query")) != []) => query_name(page:url("query")) | "Monkey";
-            test = query_name(page:url("query"));
+            name = (query_name(page:url("query")).length() > 0) => query_name(page:url("query"))[0] | "Monkey";
+            test = query_name(page:url("query"))[0];
         }
         {
             notify("Notification 1", "Hi there.") with sticky = true and position = "top-left";
