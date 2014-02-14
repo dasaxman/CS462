@@ -30,7 +30,7 @@ ruleset Exercise1 {
             x = ent:count + 1;
         }
             if x <= 5 then 
-                notify("Counting notification", "Appeared " + x + " times") with sticky = true and position = "bottom-left";
+                notify("Counting notification", "Appeared " + x + " times") with position = "bottom-left";
         always {
             ent:count += 1 from 0;
         }
@@ -39,7 +39,7 @@ ruleset Exercise1 {
         select when pageview url re/clear=/
         notify("Notification 5", "Clearing counter") with sticky = true and position = "bottom-right";
         fired {
-            set ent:count 0;
+            set ent:count -1;
         }
     }
 }
