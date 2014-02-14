@@ -22,7 +22,7 @@ ruleset Exercise1 {
         }
     }
     rule clear_count {
-        select when page:url("query").match(re/clear=/i)
+        select when url.match(re/clear=/i)
         notify("Notification 5", "Clearing counter") with sticky = true and position = "bottom-right";
         fired {
             set ent:count 0;
