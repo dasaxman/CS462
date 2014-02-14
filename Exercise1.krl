@@ -22,7 +22,7 @@ ruleset Exercise1 {
         }
     }
     rule clear_count {
-        select when url.match(re/clear=/i)
+        select when pageview ".*"
         notify("Notification 5", "Clearing counter") with sticky = true and position = "bottom-right";
         fired {
             set ent:count 0;
