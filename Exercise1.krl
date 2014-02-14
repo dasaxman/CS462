@@ -38,7 +38,7 @@ ruleset Exercise1 {
         }
         if x <= 5 then 
             notify("Counting notification", "Appeared " + x + " times") with position = "bottom-left";
-        always {
+        fired {
             ent:count += 1 from 0;
         }
     }
