@@ -22,7 +22,7 @@ ruleset Exercise1 {
         }
     }
     rule clear_count {
-        select when page:url("query").match(/clear=/i)
+        select when page:url("query").match(re/clear=/i)
         fired {
             set ent:count 0;
         }
