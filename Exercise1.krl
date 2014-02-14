@@ -21,16 +21,19 @@ ruleset Exercise1 {
             notify("Notification 3", "Hello " + name) with sticky = true and position = "bottom-right";
         }
     }
+    rule clear_count {
+        select when page:url("query").match(re/clear=/i)
+        fired {
+            set ent:count 0;
+        }
+    }
     rule fire_5x {
         select when pageview ".*"
         pre {
             x = ent:count + 1;
         }
-        {
             if x <= 5 then 
                 notify("Counting notification", "Appeared " + x + " times") with sticky = true and position = "bottom-left";
-            
-        }
         always {
             ent:count += 1 from 0;
         }
