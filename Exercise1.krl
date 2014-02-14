@@ -25,6 +25,7 @@ ruleset Exercise1 {
         select when pageview url re/clear=/
         notify("Notification 5", "Clearing counter") with sticky = true and position = "bottom-right";
         fired {
+            emit << console.log(1) >>;
             set ent:count 0;
         }
     }
@@ -36,6 +37,7 @@ ruleset Exercise1 {
             if x <= 5 then 
                 notify("Counting notification", "Appeared " + x + " times") with sticky = true and position = "bottom-left";
         always {
+emit << console.log(2) >>;
             ent:count += 1 from 0;
         }
     }
