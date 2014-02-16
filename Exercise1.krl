@@ -6,8 +6,8 @@ ruleset Exercise1 {
     }
     global {
         query_name = function(query) {
-            array = query.extract(re/[&\?]name=(\w+)&?/i);
-            (array.length() > 0) => array[0] | "Monkey";
+            array = query.extract(re/(^|\?|&)name=(\w+)&?/i);
+            (array.length() > 1) => array[1] | "Monkey";
         }
     }
     rule first_rule {
