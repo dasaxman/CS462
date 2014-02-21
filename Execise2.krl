@@ -26,6 +26,6 @@ ruleset Exercise2 {
     }
     rule submit_rule {
         select when web submit "#myForm"
-        notify("Submitted", "Yay");
+        notify("Submitted", event:attr("lastName"));
     }
 }
