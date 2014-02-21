@@ -22,13 +22,14 @@ ruleset Exercise2 {
             {
                 notify("Yes", "Names");
                  
-                watch("#myForm", "submit");
+                
                 append("#main", name);
             }
             if ent:firstName == 0 && ent:lastName == 0 then
             {
                 notify("No", "Names");
                 append("#main", form);
+                watch("#myForm", "submit");
             }
     }
     rule submit_rule {
