@@ -17,7 +17,6 @@ ruleset Exercise2 {
                     <input type="submit" id="formSubmit">
                     </form>
                     >>;
-            name = ent:firstName + " " + ent:lastName;
         }
             {
                 notify("Yes", "Names");
@@ -34,7 +33,7 @@ ruleset Exercise2 {
     }
     rule submit_rule {
         select when web submit "#myForm"
-        noop();
+        notify("Submit", "myForm submitted");
         fired {
             set ent:firstName event:attr("firstName");
             set ent:lastName event:attr("lastName");
