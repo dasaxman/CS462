@@ -19,13 +19,23 @@ ruleset Exercise2 {
                     >>;
             name = ent:firstName + " " + ent:lastName;
         }
-            {
-                notify("Yes", "Names");
-                append("#main", name);
-                notify("No", "Names");
-                append("#main", form);
-                watch("#myForm", "submit");
-            }
+        {
+            notify("Yes", "Names");
+            append("#main", name);
+            notify("No", "Names");
+            append("#main", form);
+            watch("#myForm", "submit");
+        }
+    }
+    rule show_names {
+        select when pageview ".*"
+        pre {
+            name = ent:firstName + " " + ent:lastName;
+        }
+        {
+            notify("Yes", "Names");
+            append("#main", name);
+        }
     }
     rule submit_rule {
         select when web submit "#myForm"
