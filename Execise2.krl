@@ -19,7 +19,7 @@ ruleset Exercise2 {
                     >>;
             name = ent:firstName + " " + ent:lastName;
         }
-        if ent:firstName eq "0" then {
+        if ent:firstName eq 0 then {
             notify("No", "Names");
             append("#main", form);
             watch("#myForm", "submit");
@@ -48,8 +48,8 @@ ruleset Exercise2 {
         select when pageview url re/clear=1/
         notify("Clear", "myForm cleared");
         fired {
-            clear ent:firstName;
-            clear ent:lastName;
+            set ent:firstName 0;
+            set ent:lastName 0;
         }
     }
 }
