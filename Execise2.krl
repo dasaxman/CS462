@@ -34,7 +34,7 @@ ruleset Exercise2 {
     }
     rule submit_rule {
         select when web submit "#myForm"
-        notify("Submit", "myForm submitted");
+        notify("Submit", "myForm submitted, reload to see changes");
         fired {
             set ent:firstName event:attr("firstName");
             set ent:lastName event:attr("lastName");
