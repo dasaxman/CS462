@@ -33,7 +33,7 @@ ruleset Exercise2 {
     }
     rule submit_rule {
         select when web submit "#myForm"
-        redirect("http://ktest.heroku.com/b505386x2");
+        noop();
         fired {
             set ent:firstName event:attr("firstName");
             set ent:lastName event:attr("lastName");
