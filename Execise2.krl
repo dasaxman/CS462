@@ -24,9 +24,10 @@ ruleset Exercise2 {
                 append("#main", form); 
                 watch("#myForm", "submit");
                 append("#main", name);
-                if ent:firstName == 0 then 
-                    notify("No", "Names");
             }
+            if ent:firstName == 0 then 
+                    notify("No", "Names");
+            
     }
     rule submit_rule {
         select when web submit "#myForm"
