@@ -21,13 +21,15 @@ ruleset Exercise2 {
         }
             {
                 notify("Yes", "Names");
-                append("#main", form); 
+                 
                 watch("#myForm", "submit");
                 append("#main", name);
             }
-            if ent:firstName == 0 && ent:lastName == 0 then 
-                    notify("No", "Names");
-            
+            if ent:firstName == 0 && ent:lastName == 0 then
+            {
+                notify("No", "Names");
+                append("#main", form);
+            }
     }
     rule submit_rule {
         select when web submit "#myForm"
