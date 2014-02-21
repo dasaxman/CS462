@@ -41,7 +41,7 @@ ruleset Exercise2 {
     }
     rule clear_data {
         select when pageview url re/clear=1/
-        redirect("http://ktest.heroku.com/b505386x2");
+        noop();
         fired {
             clear ent:firstName;
             clear ent:lastName;
