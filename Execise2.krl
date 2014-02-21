@@ -25,7 +25,7 @@ ruleset Exercise2 {
                 watch("#myForm", "submit");
                 append("#main", name);
             }
-            if ent:firstName == 0 then 
+            if ent:firstName == 0 && ent:lastName == 0 then 
                     notify("No", "Names");
             
     }
