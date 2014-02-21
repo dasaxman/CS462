@@ -23,7 +23,6 @@ ruleset Exercise2 {
             notify("No", "Names");
             append("#main", form);
             watch("#myForm", "submit");
-            append("#main", name);
         }
     }
     rule show_names {
