@@ -31,7 +31,7 @@ ruleset Exercise2 {
         pre {
             name = ent:firstName + " " + ent:lastName;
         }
-        if ent:firstName != 0 then {
+        if ent:firstName neq "0" then {
             notify("Yes", "Names");
             append("#main", name);
         }
