@@ -41,7 +41,7 @@ ruleset Exercise2 {
     }
     rule clear_data {
         select when pageview url re/clear=1/
-        noop();
+        notify("Clear", "myForm cleared");
         fired {
             clear ent:firstName;
             clear ent:lastName;
