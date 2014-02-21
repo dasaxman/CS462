@@ -19,8 +19,7 @@ ruleset Exercise2 {
                     >>;
             name = ent:firstName + " " + ent:lastName;
         }
-        if ent:firstName eq 0 then {
-            notify("No", "Names");
+        {
             append("#main", form);
             watch("#myForm", "submit");
         }
@@ -30,10 +29,8 @@ ruleset Exercise2 {
         pre {
             name = ent:firstName + " " + ent:lastName;
         }
-        if ent:firstName neq 0 then {
-            notify("Yes", "Names");
+        if ent:firstName neq 0 && ent:lastName neq 0 then 
             append("#main", name);
-        }
     }
     rule submit_rule {
         select when web submit "#myForm"
@@ -45,7 +42,7 @@ ruleset Exercise2 {
     }
     rule clear_data {
         select when pageview url re/clear=1/
-        notify("Clear", "myForm cleared");
+        notify("Clear", "myForm cleared, reload to see changes");
         fired {
             clear ent:firstName;
             clear ent:lastName;
