@@ -43,8 +43,8 @@ ruleset Exercise2 {
         select when pageview url re/clear=1/
         noop();
         fired {
-            clear ent:firstName;
-            clear ent:lastName;
+            set ent:firstName 0;
+            set ent:lastName 0;
         }
     }
 }
