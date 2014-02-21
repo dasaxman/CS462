@@ -15,7 +15,7 @@ ruleset Exercise2 {
                             <label for="lastName">Last Name</label><input id="lastName" name="lastName"><br>
                             <input type="submit" id="formSubmit">
                             >>;
-            append("#main", html);
+            append("#main", html); 
         }
     }
 }
