@@ -19,12 +19,12 @@ ruleset Exercise2 {
                     >>;
             name = ent:firstName + " " + ent:lastName;
         }
-        if ent:firstName != 0 && ent: lastName != 0 then 
+        if ent:firstName == 0 && ent: lastName == 0 then 
             {
                 append("#main", form); 
                 watch("#myForm", "submit");
             }
-        if ent:firstName == 0 && ent: lastName == 0 then
+        if ent:firstName != 0 && ent: lastName != 0 then
             append("#main", name);
     }
     rule submit_rule {
