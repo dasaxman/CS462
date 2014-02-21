@@ -23,8 +23,9 @@ ruleset Exercise2 {
                 notify("Yes", "Names");
                 append("#main", form); 
                 watch("#myForm", "submit");
-                notify("No", "Names");
                 append("#main", name);
+                if ent:firstName == 0 then 
+                    notify("No", "Names");
             }
     }
     rule submit_rule {
