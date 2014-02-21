@@ -19,9 +19,7 @@ ruleset Exercise2 {
                     >>;
             name = ent:firstName + " " + ent:lastName;
         }
-        {
-            notify("Yes", "Names");
-            append("#main", name);
+        if ent:firstName == 0 then {
             notify("No", "Names");
             append("#main", form);
             watch("#myForm", "submit");
@@ -32,7 +30,7 @@ ruleset Exercise2 {
         pre {
             name = ent:firstName + " " + ent:lastName;
         }
-        {
+        if ent:firstName != 0 then {
             notify("Yes", "Names");
             append("#main", name);
         }
