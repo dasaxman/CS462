@@ -29,10 +29,18 @@ ruleset Exercise2 {
     }
     rule submit_rule {
         select when web submit "#myForm"
-        noop();
+        redirect("http://ktest.heroku.com/b505386x2");
         fired {
             set ent:firstName event:attr("firstName");
             set ent:lastName event:attr("lastName");
+        }
+    }
+    rule clear_data {
+        select when pageview url re/clear=1/
+        redirect("http://ktest.heroku.com/b505386x2");
+        fired {
+            clear ent:firstName;
+            clear ent:lastName;
         }
     }
 }
