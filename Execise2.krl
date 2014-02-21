@@ -19,7 +19,7 @@ ruleset Exercise2 {
                     >>;
             name = ent:firstName + " " + ent:lastName;
         }
-        if ent:firstName == 0 then {
+        if ent:firstName eq "0" then {
             notify("No", "Names");
             append("#main", form);
             watch("#myForm", "submit");
