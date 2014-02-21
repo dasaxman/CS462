@@ -17,15 +17,11 @@ ruleset Exercise2 {
                     <input type="submit" id="formSubmit">
                     </form>
                     >>;
+            name = ent:firstName + " " + ent:lastName;
         }
             {
                 notify("Yes", "Names");
-                 
-                
                 append("#main", name);
-            }
-            if ent:firstName == 0 && ent:lastName == 0 then
-            {
                 notify("No", "Names");
                 append("#main", form);
                 watch("#myForm", "submit");
