@@ -12,7 +12,7 @@ ruleset rotten_tomatoes {
     global {
         getMovie = function(title) {
             http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
-                {"apiKey": "cypttkxj8w2rpb4zk8faytr3",
+                {"apikey": "cypttkxj8w2rpb4zk8faytr3",
                  "q": title,
                  "page_limit": 1}
             );
