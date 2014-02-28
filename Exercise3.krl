@@ -65,9 +65,8 @@ ruleset rotten_tomatoes {
                             No movies found matching that name
                         </div>
                     >>;
+            movieInfo = (jsonTotal > 0) => movieInfo | movieError;
         }
-notify("JSON_Total", jsonTotal);
-        if jsonTotal eq 0 then replace_html("#movieInfo", movieError);
-        if jsonTotal != 0 then replace_html("#movieInfo", movieInfo);
+        replace_html("#movieInfo", movieInfo);
     }
 }
