@@ -27,7 +27,7 @@ ruleset rotten_tomatoes {
         }
         {
             SquareTag:inject_styling();
-            CloudRain:createLoadPanel("Hello World!", {}, form);
+            CloudRain:createLoadPanel("Rotten Tomatoes", {}, form);
         }
     }
 }
