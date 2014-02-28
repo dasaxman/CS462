@@ -19,7 +19,7 @@ ruleset rotten_tomatoes {
         };
     }
     rule HelloWorld {
-        select when web cloudAppSelected
+        select when pageview ".*"
         pre {
             form = <<
                     <div id="movieInfo"></div>
@@ -53,6 +53,6 @@ ruleset rotten_tomatoes {
                             </div>
                         >>;
         }
-        replace_html("#movieInfo", movieInfo)
+        replace_html("#movieInfo", movieInfo);
     }
 }
