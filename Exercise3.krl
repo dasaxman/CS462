@@ -72,7 +72,7 @@ notify("Test", testMovie);
                         </div>
                     >>;
         }
-        if jsonTotal == 0 then replace_html("#movieInfo", movieError);
+        replace_html("#movieInfo", movieError);
         if jsonTotal != 0 then replace_html("#movieInfo", movieInfo);
     }
 }
