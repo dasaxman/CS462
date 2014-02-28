@@ -56,7 +56,8 @@ ruleset rotten_tomatoes {
         }
         {
         replace_html("#movieInfo", movieInfo);
-        notify("Title", jsonTitle);
+        notify("Title", event:attr("movieTitle"));
+        notify("JSON", json);
         }
     }
 }
