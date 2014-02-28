@@ -18,12 +18,12 @@ ruleset rotten_tomatoes {
             );
         };
     }
-    rule HelloWorld is active{
+    rule HelloWorld {
         select when web cloudAppSelected
         pre {
             form = <<
                     <div id="movieInfo"></div>
-                    <p>Please input the movie title</p><br>
+                    <p>Please input the movie title</p>
                     <form id="myForm">
                     <label for="movieTitle">Movie Title</label><input id="movieTitle" name="movieTitle"><br>
                     <input type="submit" id="formSubmit">
