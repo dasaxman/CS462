@@ -22,10 +22,10 @@ ruleset rotten_tomatoes {
         select when web cloudAppSelected
         pre {
             form = <<
-                    <p>Here is my paragraph text. How lame is this?</p><br>
+                    <div id="movieInfo"></div>
+                    <p>Please input the movie title</p><br>
                     <form id="myForm">
-                    <label for="firstName">First Name</label><input id="firstName" name="firstName"><br>
-                    <label for="lastName">Last Name</label><input id="lastName" name="lastName"><br>
+                    <label for="movieTitle">Movie Title</label><input id="movieTitle" name="movieTitle"><br>
                     <input type="submit" id="formSubmit">
                     </form>
                     >>;
@@ -34,5 +34,25 @@ ruleset rotten_tomatoes {
             SquareTag:inject_styling();
             CloudRain:createLoadPanel("Rotten Tomatoes", {}, form);
         }
+    }
+    rule submit_rule {
+        select when web submit "#myForm"
+        pre {
+            json = getMovie(event:attr("movieTitle"));
+            jsonTitle = json.pick("$..title");
+            jsonYear = json.pick("$..year");
+            jsonSynopsis = json.pick("$..synopsis");
+            jsonRating = json.pick("$..critics_rating");
+            movieInfo = <<
+                            <div id="movieInfo">
+                                Movie Information<br>
+                                Title: #{jsonTitle}<br>
+                                Release Year: #{jsonYear}<br>
+                                Synopsis: #{jsonSynopsis}<br>
+                                Critic Rating: #{jsonRating}
+                            </div>
+                        >>;
+        }
+        replace_html("#movieInfo", movieInfo)
     }
 }
