@@ -23,9 +23,8 @@ ruleset rotten_tomatoes {
         pre {
             form = <<
                     <div id="movieInfo"></div>
-                    <p>Please input the movie title</p>
                     <form id="myForm">
-                    <label for="movieTitle">Movie Title</label><input id="movieTitle" name="movieTitle"><br>
+                    <label for="movieTitle">Please input the movie title</label><input id="movieTitle" name="movieTitle"><br>
                     <input type="submit" id="formSubmit">
                     </form>
                     >>;
