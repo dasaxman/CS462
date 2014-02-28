@@ -47,10 +47,10 @@ notify("Test", testMovie);
         pre {
             
             json = getMovie(event:attr("movieTitle"));
-            jsonTitle = json.pick("$..title[0]");
-            jsonYear = json.pick("$..year[0]");
-            jsonSynopsis = json.pick("$..synopsis[0]");
-            jsonRating = json.pick("$..critics_rating[0]");
+            jsonTitle = json.pick("$.movies[0].title");
+            jsonYear = json.pick("$.movies[0].year");
+            jsonSynopsis = json.pick("$.movies[0].synopsis");
+            jsonRating = json.pick("$.movies[0].critics_rating");
             movieInfo = <<
                             <div id="movieInfo">
                                 Movie Information<br>
