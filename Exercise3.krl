@@ -64,10 +64,6 @@ notify("Test", testMovie);
                                     Synopsis: #{jsonSynopsis}<br>
                                     Critic Rating: #{jsonRating}
                                 </div>
-                                Title: #{jsonTitle}<br>
-                                Release Year: #{jsonYear}<br>
-                                Synopsis: #{jsonSynopsis}<br>
-                                Critic Rating: #{jsonRating}
                             </div>
                         >>;
             movieError = <<
