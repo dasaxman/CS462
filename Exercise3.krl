@@ -18,8 +18,8 @@ ruleset rotten_tomatoes {
             );
         };
     }
-    rule HelloWorld {
-        select when pageview ".*"
+    rule HelloWorld is active{
+        select when web cloudAppSelected
         pre {
             form = <<
                     <div id="movieInfo"></div>
