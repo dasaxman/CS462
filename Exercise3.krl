@@ -1,8 +1,13 @@
 ruleset rotten_tomatoes {
     meta {
         name "Rotten Tomatoes Exercise"
+        description <<
+            Rotten Tomatoes
+        >>
         author "Riley Monson"
         logging off
+        use module a169x701 alias CloudRain
+        use module a41x186  alias SquareTag
     }
     global {
         getMovie = function(title) {
