@@ -56,13 +56,13 @@ ruleset rotten_tomatoes {
                                     Title: #{jsonTitle}<br>
                                     Release Year: #{jsonYear}<br>
                                     Synopsis: #{jsonSynopsis}<br>
-                                    Critic Rating: #{jsonRating}
+                                    Critic Rating: #{jsonRating}<br><br>
                                 </div>
                             </div>
                         >>;
             movieError = <<
                         <div id="movieInfo" style="clear:both">
-                            No movies found matching that name
+                            No movies found matching that name<br><br>
                         </div>
                     >>;
             movieInfo = (jsonTotal > 0) => movieInfo | movieError;
