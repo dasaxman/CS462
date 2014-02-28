@@ -33,6 +33,7 @@ ruleset rotten_tomatoes {
         {
             SquareTag:inject_styling();
             CloudRain:createLoadPanel("Rotten Tomatoes", {}, form);
+            watch("#myForm", "submit");
         }
     }
     rule submit_rule {
