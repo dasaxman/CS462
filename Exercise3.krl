@@ -33,7 +33,7 @@ ruleset rotten_tomatoes {
                 {"apikey": "cypttkxj8w2rpb4zk8faytr3",
                  "q": "Eleysium",
                  "page_limit": "1"}
-            );
+            ).pick("$.content").decode();
         }
         {
             SquareTag:inject_styling();
