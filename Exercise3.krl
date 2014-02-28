@@ -29,16 +29,23 @@ ruleset rotten_tomatoes {
                     <input type="submit" id="formSubmit">
                     </form>
                     >>;
+            testMovie = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+                {"apikey": "cypttkxj8w2rpb4zk8faytr3",
+                 "q": "Eleysium",
+                 "page_limit": "1"}
+            );
         }
         {
             SquareTag:inject_styling();
             CloudRain:createLoadPanel("Rotten Tomatoes", {}, form);
             watch("#myForm", "submit");
+notify("Test", testMovie);
         }
     }
     rule submit_rule {
         select when web submit "#myForm"
         pre {
+            
             json = getMovie(event:attr("movieTitle"));
             jsonTitle = json.pick("$..title[0]");
             jsonYear = json.pick("$..year[0]");
