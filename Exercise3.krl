@@ -13,12 +13,21 @@ ruleset rotten_tomatoes {
             );
         };
     }
-    rule basic_rule {
-        select when pageview ".*"
+    rule HelloWorld is active{
+        select when web cloudAppSelected
+        pre {
+            form = <<
+                    <p>Here is my paragraph text. How lame is this?</p><br>
+                    <form id="myForm">
+                    <label for="firstName">First Name</label><input id="firstName" name="firstName"><br>
+                    <label for="lastName">Last Name</label><input id="lastName" name="lastName"><br>
+                    <input type="submit" id="formSubmit">
+                    </form>
+                    >>;
+        }
         {
-            notify("Notification 1", "Hi there.") with sticky = true and position = "top-left";
-            notify("Notification 2", "Yeah, you.") with sticky = true;
+            SquareTag:inject_styling();
+            CloudRain:createLoadPanel("Hello World!", {}, form);
         }
     }
-    
 }
