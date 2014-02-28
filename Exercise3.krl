@@ -15,7 +15,7 @@ ruleset rotten_tomatoes {
                 {"apikey": "cypttkxj8w2rpb4zk8faytr3",
                  "q": title,
                  "page_limit": "1"}
-            );
+            ).pick("$.content").decode();
         };
     }
     rule HelloWorld is active{
