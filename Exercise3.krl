@@ -45,26 +45,38 @@ notify("Test", testMovie);
     rule submit_rule {
         select when web submit "#myForm"
         pre {
-            
             json = getMovie(event:attr("movieTitle"));
+            jsonTotal = json.pick("$.total");
             jsonTitle = json.pick("$.movies[0].title");
             jsonYear = json.pick("$.movies[0].year");
             jsonSynopsis = json.pick("$.movies[0].synopsis");
-            jsonRating = json.pick("$.movies[0].critics_rating");
+            jsonRating = json.pick("$.movies[0].ratings.critics_rating");
+            jsonThumbnail = json.pick("$.movies[0].posters.thumbnail");
             movieInfo = <<
-                            <div id="movieInfo">
-                                Movie Information<br>
+                            <div id="movieInfo" style="clear:both">
+                                <div>Movie Information</div>
+                                <div style="float:left">
+                                    <img src="#{jsonThumbnail}">
+                                </div>
+                                <div style="float:left">
+                                    Title: #{jsonTitle}<br>
+                                    Release Year: #{jsonYear}<br>
+                                    Synopsis: #{jsonSynopsis}<br>
+                                    Critic Rating: #{jsonRating}
+                                </div>
                                 Title: #{jsonTitle}<br>
                                 Release Year: #{jsonYear}<br>
                                 Synopsis: #{jsonSynopsis}<br>
                                 Critic Rating: #{jsonRating}
                             </div>
                         >>;
+            movieError = <<
+                        <div id="movieInfo" style="clear:both">
+                            No movies found matching that name
+                        </div>
+                    >>;
         }
-        {
-        replace_html("#movieInfo", movieInfo);
-        notify("Title", event:attr("movieTitle"));
-        notify("JSON", json);
-        }
+        if jsonTotal == 0 then replace_html("#movieInfo", movieError);
+        if jsonTotal != 0 then replace_html("#movieInfo", movieInfo);
     }
 }
