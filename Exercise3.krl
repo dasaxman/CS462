@@ -33,7 +33,7 @@ ruleset rotten_tomatoes {
                 {"apikey": "cypttkxj8w2rpb4zk8faytr3",
                  "q": "Elesyium",
                  "page_limit": "1"}
-            ).pick("$.content").decode();
+            ).pick("$.content").decode().pick("$.movies[0].title");
         }
         {
             SquareTag:inject_styling();
