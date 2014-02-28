@@ -53,12 +53,12 @@ notify("Test", testMovie);
             jsonRating = json.pick("$.movies[0].ratings.critics_rating");
             jsonThumbnail = json.pick("$.movies[0].posters.thumbnail");
             movieInfo = <<
-                            <div id="movieInfo" style="clear:both">
+                            <div id="movieInfo">
                                 <div>Movie Information</div>
-                                <div style="float:left">
+                                <div>
                                     <img src="#{jsonThumbnail}">
                                 </div>
-                                <div style="float:left">
+                                <div>
                                     Title: #{jsonTitle}<br>
                                     Release Year: #{jsonYear}<br>
                                     Synopsis: #{jsonSynopsis}<br>
