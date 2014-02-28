@@ -62,7 +62,7 @@ ruleset rotten_tomatoes {
                         >>;
             movieError = <<
                         <div id="movieInfo" style="clear:both">
-                            No movies found matching that name<br><br>
+                            No movies found matching the name #{event:attr("movieTitle")}<br><br>
                         </div>
                     >>;
             movieInfo = (jsonTotal > 0) => movieInfo | movieError;
