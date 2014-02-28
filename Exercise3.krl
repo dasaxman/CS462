@@ -29,17 +29,11 @@ ruleset rotten_tomatoes {
                     <input type="submit" id="formSubmit">
                     </form>
                     >>;
-            testMovie = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
-                {"apikey": "cypttkxj8w2rpb4zk8faytr3",
-                 "q": "Elesyium",
-                 "page_limit": "1"}
-            ).pick("$.content").decode().pick("$.movies[0].title");
         }
         {
             SquareTag:inject_styling();
             CloudRain:createLoadPanel("Rotten Tomatoes", {}, form);
             watch("#myForm", "submit");
-notify("Test", testMovie);
         }
     }
     rule submit_rule {
@@ -72,6 +66,7 @@ notify("Test", testMovie);
                         </div>
                     >>;
         }
+notify("JSON_Total", jsonTotal);
         if jsonTotal eq 0 then replace_html("#movieInfo", movieError);
         if jsonTotal != 0 then replace_html("#movieInfo", movieInfo);
     }
