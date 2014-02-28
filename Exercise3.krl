@@ -31,7 +31,7 @@ ruleset rotten_tomatoes {
                     >>;
             testMovie = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
                 {"apikey": "cypttkxj8w2rpb4zk8faytr3",
-                 "q": "Eleysium",
+                 "q": "Elesyium",
                  "page_limit": "1"}
             ).pick("$.content").decode();
         }
