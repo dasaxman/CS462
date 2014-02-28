@@ -40,10 +40,10 @@ ruleset rotten_tomatoes {
         select when web submit "#myForm"
         pre {
             json = getMovie(event:attr("movieTitle"));
-            jsonTitle = json.pick("$..title");
-            jsonYear = json.pick("$..year");
-            jsonSynopsis = json.pick("$..synopsis");
-            jsonRating = json.pick("$..critics_rating");
+            jsonTitle = json.pick("$..title[0]");
+            jsonYear = json.pick("$..year[0]");
+            jsonSynopsis = json.pick("$..synopsis[0]");
+            jsonRating = json.pick("$..critics_rating[0]");
             movieInfo = <<
                             <div id="movieInfo">
                                 Movie Information<br>
