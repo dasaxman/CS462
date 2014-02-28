@@ -5,7 +5,13 @@ ruleset rotten_tomatoes {
         logging off
     }
     global {
-        
+        getMovie = function(title) {
+            http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+                {"apiKey": "cypttkxj8w2rpb4zk8faytr3",
+                 "q": title,
+                 "page_limit": 1}
+            );
+        };
     }
     rule basic_rule {
         select when pageview ".*"
