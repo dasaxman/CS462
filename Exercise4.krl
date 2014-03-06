@@ -7,19 +7,11 @@ ruleset foursquare {
         author "Riley Monson"
         logging off
     }
-    global {
-    }
     rule HelloWorld is active{
         select when web cloudAppSelected
         {
             SquareTag:inject_styling();
             CloudRain:createLoadPanel("Foursquare", {}, "<div id='content'></div>");
         }
-    }
-    rule process_fs_checkin {
-        select when foursquare checkin
-        pre {
-        }
-        notify("Notification 1", "Hi there.");
     }
 }
