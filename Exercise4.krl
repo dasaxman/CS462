@@ -9,7 +9,7 @@ ruleset foursquare {
         use module a169x701 alias CloudRain
         use module a41x186  alias SquareTag
     }
-    rule HelloWorld is active {
+    rule HelloWorld {
         select when web cloudAppSelected
         pre {
             my_html = <<
