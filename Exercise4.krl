@@ -23,6 +23,6 @@ ruleset foursquare {
     }
     rule process_fs_checkin {
         select when foursquare checkin
-        notify("Notification 1", "Hi there.");
+        notify("Notification 1", "Hi there.") with sticky = true and position = "top-left";
     }
 }
