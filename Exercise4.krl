@@ -33,7 +33,7 @@ ruleset foursquare {
         select when foursquare checkin
         noop();
         fired {
-            set ent:fsEvent event:attrs().encode().pick("$.checkin");
+            set ent:fsEvent event:attr("checkin");
         }
     }
 }
