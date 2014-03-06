@@ -12,9 +12,12 @@ ruleset foursquare {
     rule display_checkin {
         select when web cloudAppSelected
         pre {
+            event = ent:fsEvent;
+            test = ent:test;
             my_html = <<
               <div id="content">
-                Event:#{ent:fsEvent}<br>
+                Test:#{test}<br>
+                Event:#{event}<br>
                 Venue:#{ent:venue}<br>
                 City:#{ent:city}<br>
                 Shout:#{ent:shout}<br>
@@ -31,6 +34,7 @@ ruleset foursquare {
     rule process_fs_checkin {
         select when foursquare checkin
         fired {
+            set ent:test "Fired";
             set ent:fsEvent event:attrs();
         }
     }
