@@ -33,10 +33,10 @@ ruleset foursquare {
         noop();
         fired {
             set ent:fsEvent event:attr("checkin");
-            set ent:venue event:attr("checkin").pick($.venue.name");
-            set ent:city event:attr("checkin").pick($.venue.location.city");
-            set ent:shout event:attr("checkin").pick($.shout");
-            set ent:created event:attr("checkin").pick($.createdAt");
+            set ent:venue event:attr("checkin").pick("$.venue.name");
+            set ent:city event:attr("checkin").pick("$.venue.location.city");
+            set ent:shout event:attr("checkin").pick("$.shout");
+            set ent:created event:attr("checkin").pick("$.createdAt");
         }
     }
 }
