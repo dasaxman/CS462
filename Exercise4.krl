@@ -9,11 +9,16 @@ ruleset foursquare {
         use module a169x701 alias CloudRain
         use module a41x186  alias SquareTag
     }
-    rule init {
+    rule display_checkin {
         select when web cloudAppSelected
         pre {
             my_html = <<
-              <div id="header">Hello, World!</div>
+              <div id="content">
+                Venue:#{ent:venue}<br>
+                City:#{ent:city}<br>
+                Shout:#{ent:shout}<br>
+                Created:#{ent:created}
+              </div>
             >>;
         }
         {
@@ -24,10 +29,10 @@ ruleset foursquare {
     rule process_fs_checkin {
         select when foursquare checkin
         pre {
-            html = <<
-                    <h5>Event Fired!<h5>
-                    >>;
+            checkinData = event:attr("$.content.checkin").decode();
         }
-        replace_html("#header", html);
+        fired {
+            ent:event = checkinData;
+        }
     }
 }
