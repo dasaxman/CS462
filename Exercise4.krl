@@ -12,10 +12,9 @@ ruleset foursquare {
     rule display_checkin {
         select when web cloudAppSelected
         pre {
-            event = ent:fsEvent;
             my_html = <<
               <div id="content">
-                Event:#{event}<br>
+                Event:#{ent:fsEvent}<br>
                 Venue:#{ent:venue}<br>
                 City:#{ent:city}<br>
                 Shout:#{ent:shout}<br>
@@ -34,6 +33,10 @@ ruleset foursquare {
         noop();
         fired {
             set ent:fsEvent event:attr("checkin");
+            set ent:venue event:attr("checkin").pick($.venue.name");
+            set ent:city event:attr("checkin").pick($.venue.location.city");
+            set ent:shout event:attr("checkin").pick($.shout");
+            set ent:created event:attr("checkin").pick($.createdAt");
         }
     }
 }
