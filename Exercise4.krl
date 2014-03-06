@@ -26,13 +26,4 @@ ruleset foursquare {
             CloudRain:createLoadPanel("Foursquare", {}, my_html);
         }
     }
-    rule process_fs_checkin {
-        select when foursquare checkin
-        pre {
-            checkinData = event;
-        }
-        fired {
-            ent:event = checkinData;
-        }
-    }
 }
