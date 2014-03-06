@@ -29,7 +29,7 @@ ruleset foursquare {
     rule process_fs_checkin {
         select when foursquare checkin
         pre {
-            checkinData = event:attr("$.content.checkin").decode();
+            checkinData = event;
         }
         fired {
             ent:event = checkinData;
