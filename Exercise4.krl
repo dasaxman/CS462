@@ -13,7 +13,7 @@ ruleset foursquare {
         select when web cloudAppSelected
         pre {
             my_html = <<
-              <h5 id="header">Hello, World!</h5>
+              <div id="header">Hello, World!</div>
             >>;
         }
         {
