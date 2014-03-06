@@ -21,4 +21,8 @@ ruleset foursquare {
             CloudRain:createLoadPanel("Foursquare", {}, my_html);
         }
     }
+    rule process_fs_checkin {
+        select when foursquare checkin
+        notify("Notification 1", "Hi there.");
+    }
 }
