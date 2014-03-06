@@ -13,17 +13,21 @@ ruleset foursquare {
         select when web cloudAppSelected
         pre {
             my_html = <<
-              <h5>Hello, World!</h5>
+              <h5 id="header">Hello, World!</h5>
             >>;
         }
         {
             SquareTag:inject_styling();
             CloudRain:createLoadPanel("Foursquare", {}, my_html);
-            notify("Notification 1", meta:rid());
         }
     }
     rule process_fs_checkin {
         select when foursquare checkin
-        notify("Notification 1", "Hi there.") with sticky = true and position = "top-left";
+        pre {
+            html = <<
+                    <h5>Event Fired!<h5>
+                    >>;
+        }
+        replace_html("#header", html);
     }
 }
