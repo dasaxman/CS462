@@ -36,7 +36,7 @@ ruleset foursquare {
         noop();
         fired {
             set ent:test "Fired";
-            set ent:fsEvent event:attrs();
+            set ent:fsEvent event:attrs().encode();
         }
     }
 }
