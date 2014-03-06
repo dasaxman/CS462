@@ -13,10 +13,8 @@ ruleset foursquare {
         select when web cloudAppSelected
         pre {
             event = ent:fsEvent;
-            test = ent:test;
             my_html = <<
               <div id="content">
-                Test:#{test}<br>
                 Event:#{event}<br>
                 Venue:#{ent:venue}<br>
                 City:#{ent:city}<br>
@@ -35,8 +33,7 @@ ruleset foursquare {
         select when foursquare checkin
         noop();
         fired {
-            set ent:test "Fired";
-            set ent:fsEvent event:attrs().encode();
+            set ent:fsEvent event:attrs().encode().pick("$.checkin");
         }
     }
 }
