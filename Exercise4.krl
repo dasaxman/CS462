@@ -14,6 +14,7 @@ ruleset foursquare {
         pre {
             my_html = <<
               <div id="content">
+                Event:#{ent:fsEvent}<br>
                 Venue:#{ent:venue}<br>
                 City:#{ent:city}<br>
                 Shout:#{ent:shout}<br>
@@ -24,6 +25,16 @@ ruleset foursquare {
         {
             SquareTag:inject_styling();
             CloudRain:createLoadPanel("Foursquare", {}, my_html);
+        }
+    }
+    
+    rule process_fs_checkin {
+        select when foursquare checkin
+        pre {
+            checkinData = event:attrs();
+        }
+        fired {
+            ent:fsEvent = checkinData;
         }
     }
 }
