@@ -6,12 +6,19 @@ ruleset foursquare {
         >>
         author "Riley Monson"
         logging off
+        use module a169x701 alias CloudRain
+        use module a41x186  alias SquareTag
     }
     rule HelloWorld is active {
         select when web cloudAppSelected
+        pre {
+            my_html = <<
+              <h5>Hello, World!</h5>
+            >>;
+        }
         {
             SquareTag:inject_styling();
-            CloudRain:createLoadPanel("Foursquare", {}, "<div id='content'>Hey, content here</div>");
+            CloudRain:createLoadPanel("Foursquare", {}, my_html);
         }
     }
 }
