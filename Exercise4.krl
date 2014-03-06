@@ -30,11 +30,8 @@ ruleset foursquare {
     
     rule process_fs_checkin {
         select when foursquare checkin
-        pre {
-            checkinData = event:attrs();
-        }
         fired {
-            ent:fsEvent = checkinData;
+            set ent:fsEvent event:attrs();
         }
     }
 }
