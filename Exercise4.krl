@@ -19,6 +19,7 @@ ruleset foursquare {
         {
             SquareTag:inject_styling();
             CloudRain:createLoadPanel("Foursquare", {}, my_html);
+            notify("Notification 1", meta:rid());
         }
     }
     rule process_fs_checkin {
