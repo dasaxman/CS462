@@ -7,7 +7,7 @@ ruleset location_data {
     }
     global {
         get_location_data = function(some_key) {
-            (ent:location{some_key}.length() > 1) => "True" | "No Value";
+            (ent:location{some_key}.length() > 1) => ent:location{[some_key, "venue"]} | "No Value";
         }
     }
     rule add_location_item {
