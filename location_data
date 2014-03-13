@@ -1,0 +1,23 @@
+ruleset location_data {
+    meta {
+        name "Location Data"
+        author "Riley Monson"
+        logging off
+        provides get_location_data
+    }
+    global {
+        get_loccation_data = function(some_key) {
+            (ent:location{some_key}.length() > 1) => ent:location{sone_key} | "No Value";
+        }
+    }
+    rule add_location_item {
+        select when pds new_location_item
+        pre {
+            my_map = { event:attr("key") : event:attr("value")};
+        }
+        send_directive(event:attr("key")) with body = {"location" : event:attr("value")};
+        fired {
+            set ent:location my_map;
+        }
+    }
+}
