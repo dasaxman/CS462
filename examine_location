@@ -3,8 +3,9 @@ ruleset examine_location {
         name "examine location"
         author "Riley Monson"
         logging off
-        
-        //use module b505386x5 alias loc
+        use module a169x701 alias CloudRain
+        use module a41x186  alias SquareTag
+        use module b505386x5 alias loc
     }
     rule display_checkin {
         select when web cloudAppSelected
