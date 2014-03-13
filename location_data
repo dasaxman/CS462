@@ -17,13 +17,13 @@ ruleset location_data {
         pre {
             my_html = <<
               <div id="content">
-                Map:#{ent:location}
+                Map:Test
               </div>
             >>;
         }
         {
             SquareTag:inject_styling();
-            CloudRain:createLoadPanel("Foursquare", {}, my_html);
+            CloudRain:createLoadPanel("Location", {}, my_html);
         }
     }
     rule add_location_item {
