@@ -33,14 +33,16 @@ ruleset location_data {
     rule add_location_item {
         select when pds new_location_data
         pre {
-            key = event:attr("key");
-            value = event:attr("value");
+            my_key = event:attr("key");
+            my_value = event:attr("value");
+            map = {};
+            map = map.put([my_key], my_value);
         }
         send_directive(event:attr("key")) with body = {"location" : event:attr("value")};
         fired {
-            set ent:location {key : value};
-            set ent:key key;
-            set ent:value value;
+            set ent:location map;
+            set ent:key my_key;
+            set ent:value my_value;
         }
     }
 }
