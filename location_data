@@ -32,7 +32,7 @@ ruleset location_data {
         select when pds new_location_data
         pre {
         //{ event:attr("key") : event:attr("value")}
-            my_map = event:attr("key");
+            my_map = event:attrs();
         }
         send_directive(event:attr("key")) with body = {"location" : event:attr("value")};
         fired {
