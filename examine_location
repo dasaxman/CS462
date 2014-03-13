@@ -4,7 +4,7 @@ ruleset examine_location {
         author "Riley Monson"
         logging off
         
-        use module b505386x5 alias loc
+        #use module b505386x5 alias loc
     }
     rule display_checkin {
         select when web cloudAppSelected
