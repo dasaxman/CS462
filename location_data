@@ -17,9 +17,11 @@ ruleset location_data {
         pre {
             my_html = <<
               <div id="content">
-                Map:#{ent:location.encode()}<br>
+              map = ent:location.encode();
+              value = ent:value.encode();
+                Map:#{map}<br>
                 Key:#{ent:key}<br>
-                Value:#{ent:value.encode()}
+                Value:#{value}
               </div>
             >>;
         }
