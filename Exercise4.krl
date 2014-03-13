@@ -37,6 +37,10 @@ ruleset foursquare {
             set ent:city event:attr("checkin").decode().pick("$.venue.location.city");
             set ent:shout event:attr("checkin").decode().pick("$.shout");
             set ent:created event:attr("checkin").decode().pick("$.createdAt");
+            raise pds event new_location_data attributes {"checkin" : { "venue" : ent:venue,
+                                                                        "city" : ent:city,
+                                                                        "shout" : ent:shout,
+                                                                        "created" : ent:created}};
         }
     }
 }
