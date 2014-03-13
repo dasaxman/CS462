@@ -17,7 +17,7 @@ ruleset location_data {
         pre {
             my_html = <<
               <div id="content">
-                Map:#{ent:location}.encode()<br>
+                Map:#{ent:location.encode()}<br>
                 Key:#{ent:key}<br>
                 Value:#{ent:value.encode()}
               </div>
@@ -31,8 +31,6 @@ ruleset location_data {
     rule add_location_item {
         select when pds new_location_data
         pre {
-        //{ event:attr("key") : event:attr("value")}
-            my_map = event:attrs().encode();
             key = event:attr("key");
             value = event:attr("value");
         }
