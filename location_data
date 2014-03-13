@@ -15,17 +15,17 @@ ruleset location_data {
     rule display_location {
         select when web cloudAppSelected
         pre {
-            location = ent:location;
             my_html = <<
               <div id="content">
-                Map:#{location}
+                Map:#{ent:location}<br>
+                Key:#{ent:key}<br>
+                Value:#{ent:value}
               </div>
             >>;
         }
         {
             SquareTag:inject_styling();
             CloudRain:createLoadPanel("Location", {}, my_html);
-            notify("Location", location) with sticky = true;
         }
     }
     rule add_location_item {
@@ -33,10 +33,13 @@ ruleset location_data {
         pre {
         //{ event:attr("key") : event:attr("value")}
             my_map = event:attrs().encode();
+            key = event:attr("key");
         }
         send_directive(event:attr("key")) with body = {"location" : event:attr("value")};
         fired {
             set ent:location my_map;
+            set ent:key = key;
+            set ent:value = event:attr("value").encode();
         }
     }
 }
