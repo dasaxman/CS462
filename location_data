@@ -38,8 +38,8 @@ ruleset location_data {
         send_directive(event:attr("key")) with body = {"location" : event:attr("value")};
         fired {
             set ent:location my_map;
-            set ent:key = key;
-            set ent:value = event:attr("value").encode();
+            set ent:key key;
+            set ent:value event:attr("value").encode();
         }
     }
 }
