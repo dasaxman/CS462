@@ -18,7 +18,7 @@ ruleset location_data {
             location = ent:location;
             my_html = <<
               <div id="content">
-                Map:Test
+                Map:#{location}
               </div>
             >>;
         }
