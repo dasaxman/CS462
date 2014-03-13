@@ -13,7 +13,7 @@ ruleset examine_location {
         //#{loc:get_location_data("checkin")}
             my_html = <<
               <div id="content">
-                Venue:Test
+                Venue:#{loc:get_location_data("checkin")}
               </div>
             >>;
         }
