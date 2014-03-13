@@ -30,13 +30,19 @@ ruleset foursquare {
     
     rule process_fs_checkin {
         select when foursquare checkin
-        noop();
+        pre {
+            fs_event = event:attr("checkin");
+            venue = event:attr("checkin").decode().pick("$.venue.name");
+            city = event:attr("checkin").decode().pick("$.venue.location.city");
+            shout = event:attr("checkin").decode().pick("$.shout");
+            created = event:attr("checkin").decode().pick("$.createdAt");
+        }
+        send_directive(venue) with body = {"checkin" : venue};
         fired {
-            set ent:fsEvent event:attr("checkin");
-            set ent:venue event:attr("checkin").decode().pick("$.venue.name");
-            set ent:city event:attr("checkin").decode().pick("$.venue.location.city");
-            set ent:shout event:attr("checkin").decode().pick("$.shout");
-            set ent:created event:attr("checkin").decode().pick("$.createdAt");
+            set ent:venue venue;
+            set ent:city city;
+            set ent:shout shout;
+            set ent:created created;
             raise pds event new_location_data attributes {"checkin" : { "venue" : ent:venue,
                                                                         "city" : ent:city,
                                                                         "shout" : ent:shout,
