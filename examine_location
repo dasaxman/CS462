@@ -11,9 +11,18 @@ ruleset examine_location {
         select when web cloudAppSelected
         pre {
         //#{loc:get_location_data("checkin")}
+            map = loc:get_location_data("checkin");
+            
+            venue = map{"venue"};
+            city = map{"city"};
+            shout = map{"shout"};
+            created = map{"created"};
             my_html = <<
               <div id="content">
-                Venue:#{loc:get_location_data("checkin")}
+                Venue:#{venue}<br>
+                City:#{city}<br>
+                Shout:#{shout}<br>
+                CreatedAt:#{created}
               </div>
             >>;
         }
