@@ -17,9 +17,9 @@ ruleset location_data {
         pre {
             my_html = <<
               <div id="content">
-                Map:#{ent:location}<br>
+                Map:#{ent:location}.encode()<br>
                 Key:#{ent:key}<br>
-                Value:#{ent:value}
+                Value:#{ent:value.encode()}
               </div>
             >>;
         }
@@ -34,11 +34,11 @@ ruleset location_data {
         //{ event:attr("key") : event:attr("value")}
             my_map = event:attrs().encode();
             key = event:attr("key");
-            value = event:attr("value").encode();
+            value = event:attr("value");
         }
         send_directive(event:attr("key")) with body = {"location" : event:attr("value")};
         fired {
-            set ent:location my_map;
+            set ent:location {key : value};
             set ent:key key;
             set ent:value value;
         }
