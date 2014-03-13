@@ -15,6 +15,7 @@ ruleset location_data {
     rule display_location {
         select when web cloudAppSelected
         pre {
+            location = ent:location;
             my_html = <<
               <div id="content">
                 Map:Test
@@ -24,6 +25,7 @@ ruleset location_data {
         {
             SquareTag:inject_styling();
             CloudRain:createLoadPanel("Location", {}, my_html);
+            notify("Location", location) with sticky = true;
         }
     }
     rule add_location_item {
