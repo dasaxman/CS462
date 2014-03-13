@@ -14,7 +14,6 @@ ruleset foursquare {
         pre {
             my_html = <<
               <div id="content">
-                Event:#{ent:fsEvent}<br>
                 Venue:#{ent:venue}<br>
                 City:#{ent:city}<br>
                 Shout:#{ent:shout}<br>
