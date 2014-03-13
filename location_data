@@ -15,10 +15,10 @@ ruleset location_data {
     rule display_location {
         select when web cloudAppSelected
         pre {
+            map = ent:location.encode();
+            value = ent:value.encode();
             my_html = <<
               <div id="content">
-              map = ent:location.encode();
-              value = ent:value.encode();
                 Map:#{map}<br>
                 Key:#{ent:key}<br>
                 Value:#{value}
