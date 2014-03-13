@@ -31,7 +31,8 @@ ruleset location_data {
     rule add_location_item {
         select when pds new_location_item
         pre {
-            my_map = { event:attr("key") : event:attr("value")};
+        //{ event:attr("key") : event:attr("value")}
+            my_map = "Fired!!!";
         }
         send_directive(event:attr("key")) with body = {"location" : event:attr("value")};
         fired {
