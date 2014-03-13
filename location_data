@@ -29,7 +29,7 @@ ruleset location_data {
         }
     }
     rule add_location_item {
-        select when pds new_location_item
+        select when pds 'new_location_item'
         pre {
         //{ event:attr("key") : event:attr("value")}
             my_map = "Fired!!!";
