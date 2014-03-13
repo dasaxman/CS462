@@ -1,0 +1,23 @@
+ruleset examine_location {
+    meta {
+        name "examine location"
+        author "Riley Monson"
+        logging off
+        
+        use module b505386x5 alias loc
+    }
+    rule display_checkin {
+        select when web cloudAppSelected
+        pre {
+            my_html = <<
+              <div id="content">
+                Venue:#{loc:get_location_data("checkin")}
+              </div>
+            >>;
+        }
+        {
+            SquareTag:inject_styling();
+            CloudRain:createLoadPanel("Foursquare", {}, my_html);
+        }
+    }
+}
