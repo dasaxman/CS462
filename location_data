@@ -6,9 +6,8 @@ ruleset location_data {
         provides get_location_data
     }
     global {
-        get_loccation_data = function(some_key) {
-            return = "From func";
-            //(ent:location{some_key}.length() > 1) => ent:location{some_key} | "No Value";
+        get_location_data = function(some_key) {
+            (ent:location{some_key}.length() > 1) => "True" | "No Value";
         }
     }
     rule add_location_item {
@@ -22,3 +21,5 @@ ruleset location_data {
         }
     }
 }
+
+
