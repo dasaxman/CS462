@@ -10,6 +10,20 @@ ruleset location_data {
             (ent:location{some_key}.length() > 1) => ent:location{[some_key, "venue"]} | "No Value";
         }
     }
+    rule display_location {
+        select when web cloudAppSelected
+        pre {
+            my_html = <<
+              <div id="content">
+                Map:#{ent:location}
+              </div>
+            >>;
+        }
+        {
+            SquareTag:inject_styling();
+            CloudRain:createLoadPanel("Foursquare", {}, my_html);
+        }
+    }
     rule add_location_item {
         select when pds new_location_item
         pre {
