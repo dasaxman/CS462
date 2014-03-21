@@ -36,6 +36,8 @@ ruleset foursquare {
             city = event:attr("checkin").decode().pick("$.venue.location.city");
             shout = event:attr("checkin").decode().pick("$.shout");
             created = event:attr("checkin").decode().pick("$.createdAt");
+            lat = event:attr("checkin").decode().pick("$.venue.location.lat");
+            long = event:attr("checkin").decode().pick("$.venue.location.lng");
         }
         send_directive(venue) with body = {"checkin" : venue};
         fired {
@@ -48,7 +50,9 @@ ruleset foursquare {
                                                           "value" : { "venue" : ent:venue,
                                                                       "city" : ent:city,
                                                                       "shout" : ent:shout,
-                                                                      "created" : ent:created}};
+                                                                      "created" : ent:created,
+                                                                      "lat" : lat,
+                                                                      "long" : long}};
         }
     }
 }
