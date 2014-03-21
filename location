@@ -28,7 +28,7 @@ ruleset location {
             set ent:pdsLong pds_long;
             set ent:newLat new_lat;
             set ent:newLong new_long;
-            raise explicit event 'location_nearby' attributes {"distance" : dist};
+            raise explicit event 'location_nearby' attributes {"distance" : dist} if (dist < 50);
             raise explicit event 'location_far' attributes {"distance" : dist} if (dist > 50);
         }
     }
