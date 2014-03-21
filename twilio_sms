@@ -1,0 +1,22 @@
+ruleset twilio_sms {
+  meta {
+    name "Send to phone"
+    description <<
+        Sends message to phone
+    >>
+    key twilio{
+        "account_sid" : "AC5bb0c3b643028b8128d9ff2bcd7d4e79",
+        "auth_token"  : "223d52ea132d41543c6110dbc7be3b9c"
+    }
+    use module a8x115 alias twilio with twiliokeys = keys:twilio()
+     
+    logging off
+  }
+  rule answer {
+    select when explicit location_nearby   
+    pre {
+        message = "Distance: " + event:attr("distance");    
+    }
+        twilio:send_sms("9288146963", "9288520975", message);
+  } 
+}
