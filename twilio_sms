@@ -8,16 +8,21 @@ ruleset twilio_sms {
         "account_sid" : "AC5bb0c3b643028b8128d9ff2bcd7d4e79",
         "auth_token"  : "223d52ea132d41543c6110dbc7be3b9c"
     }
+    use module a169x701 alias CloudRain
+    use module a41x186  alias SquareTag
     use module a8x115 alias twilio with twiliokeys = keys:twilio()
      
     logging off
   }
   rule display {
-    select when pageview ".*"
+    select when web cloudAppSelected
     pre {
       temp = ent:message;
     }
-    notify("Message", temp) with sticky = true;
+    {
+        SquareTag:inject_styling();
+        CloudRain:createLoadPanel("Foursquare", {}, temp);
+    }
   }
   rule answer {
     select when explicit location_nearby   
