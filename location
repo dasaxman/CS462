@@ -24,7 +24,10 @@ ruleset location {
         }
         fired {
             set ent:dist dist; 
-            set ent:fired "fired";
+            set ent:pdsLat pds_lat;
+            set ent:pdsLong pds_long;
+            set ent:newLat new_lat;
+            set ent:newLong new_long;
             raise explicit event 'location_nearby' attributes {"distance" : dist} if (dist < 5);
             raise explicit event 'location_far' attributes {"distance" : dist} if (dist > 5);
         }
@@ -35,7 +38,10 @@ ruleset location {
             my_html = <<
               <div id="content">
                 Distance:#{ent:dist}<br>
-                Fired:#{ent:fired}
+                Pds Lat:#{ent:pdsLat}<br>
+                Pds Long:#{ent:pdsLong}<br>
+                New Lat:#{ent:newLat}<br>
+                New Long:#{ent:newLong}
               </div>
             >>;
         }
