@@ -1,4 +1,4 @@
-ruleset ocation {
+ruleset location {
     meta {
         name "location"
         author "Riley Monson"
