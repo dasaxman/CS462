@@ -14,6 +14,7 @@ ruleset foursquare {
         pre {
             my_html = <<
               <div id="content">
+                Event:#{ent:event}<br>
                 Venue:#{ent:venue}<br>
                 City:#{ent:city}<br>
                 Shout:#{ent:shout}<br>
@@ -38,6 +39,7 @@ ruleset foursquare {
         }
         send_directive(venue) with body = {"checkin" : venue};
         fired {
+            set ent:event fs_event;
             set ent:venue venue;
             set ent:city city;
             set ent:shout shout;
