@@ -17,6 +17,6 @@ ruleset twilio_sms {
     pre {
         message = "Distance: " + event:attr("distance");    
     }
-        twilio:send_sms("9288146963", "9288520975", message);
+        twilio:send_sms("9288146963", "9288520975", message); 
   } 
 }
