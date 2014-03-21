@@ -12,11 +12,21 @@ ruleset twilio_sms {
      
     logging off
   }
+  rule display {
+    select when pageview ".*"
+    pre {
+      temp = ent:message;
+    }
+    notify("Message", temp) with sticky = true;
+  }
   rule answer {
     select when explicit location_nearby   
     pre {
         message = "Distance: " + event:attr("distance");    
     }
-        twilio:send_sms("9288146963", "9288520975", message); 
+    twilio:send_sms("9288146963", "9288520975", message); 
+    fired {
+      set ent:message message;
+    }
   } 
 }
