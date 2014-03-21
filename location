@@ -24,6 +24,7 @@ ruleset location {
         }
         fired {
             set ent:dist dist; 
+            set ent:fired "fired";
             raise explicit event 'location_nearby' attributes {"distance" : dist} if (dist < 5);
             raise explicit event 'location_far' attributes {"distance" : dist} if (dist > 5);
         }
@@ -33,7 +34,8 @@ ruleset location {
         pre {
             my_html = <<
               <div id="content">
-                Distance:#{ent:dist}
+                Distance:#{ent:dist}<br>
+                Fired:#{ent:fired}
               </div>
             >>;
         }
