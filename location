@@ -1,52 +1,45 @@
-ruleset location {
+ruleset ocation {
     meta {
-        name "Event Network Exercise"
-        description <<
-            Event Network
-        >>
+        name "location"
         author "Riley Monson"
         logging off
         use module a169x701 alias CloudRain
         use module a41x186  alias SquareTag
+        use module b505386x5 alias loc
     }
-    rule display_event {
+    rule nearby {
+        select when location new_current
+        pre {
+            map = loc:get_location_data("checkin");
+            
+            r90 = math:pi()/2;
+            rEm = 3963;
+            
+            pds_lat = math:deg2rad(map{"lat"});
+            pds_long = math:deg2rad(map{"long"});
+            new_lat = math:deg2rad(event:attr("lat"));
+            new_long = math:deg2rad(event:attr("long"));
+            
+            dist = math:great_circle_distance(pds_long,r90 - pds_lat, new_long,r90 - new_lat, rEm);
+        }
+        fired {
+            set ent:dist dist; 
+            raise explicit event 'location_nearby' attributes {"distance" : dist} if (dist < 5);
+            raise explicit event 'location_far' attributes {"distance" : dist} if (dist > 5);
+        }
+    }
+    rule display {
         select when web cloudAppSelected
         pre {
             my_html = <<
               <div id="content">
-                Venue:#{ent:venue}<br>
-                City:#{ent:city}<br>
-                Shout:#{ent:shout}<br>
-                Created:#{ent:created}
+                Distance:#{ent:dist}
               </div>
             >>;
         }
         {
             SquareTag:inject_styling();
             CloudRain:createLoadPanel("Foursquare", {}, my_html);
-        }
-    }
-    
-    rule nearby {
-        select when location new_current
-        pre {
-            fs_event = event:attr("checkin");
-            venue = event:attr("checkin").decode().pick("$.venue.name");
-            city = event:attr("checkin").decode().pick("$.venue.location.city");
-            shout = event:attr("checkin").decode().pick("$.shout");
-            created = event:attr("checkin").decode().pick("$.createdAt");
-        }
-        send_directive(venue) with body = {"checkin" : venue};
-        fired {
-            set ent:venue venue;
-            set ent:city city;
-            set ent:shout shout;
-            set ent:created created;
-            raise pds event 'new_location_data' attributes {"key": "checkin",
-                                                          "value" : { "venue" : ent:venue,
-                                                                      "city" : ent:city,
-                                                                      "shout" : ent:shout,
-                                                                      "created" : ent:created}};
         }
     }
 }
