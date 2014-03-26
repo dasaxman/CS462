@@ -9,6 +9,12 @@ ruleset foursquare {
         use module a169x701 alias CloudRain
         use module a41x186  alias SquareTag
     }
+    global {
+        subscriptions = {
+            "channel1" : {"cid": "D633A7B2-B4AC-11E3-81E5-4D01293232C8"},
+            "channel2" : {"cid": "3C41BC38-B4AD-11E3-AA79-3982D61CF0AC"}
+        };
+    }
     rule display_checkin {
         select when web cloudAppSelected
         pre {
@@ -54,5 +60,25 @@ ruleset foursquare {
                                                                       "lat" : lat,
                                                                       "long" : long}};
         }
+    }
+    rule send_events {
+        select when foursquare checkin
+        foreach subscriptions setting(name, subscription)
+        pre {
+            fs_event = event:attr("checkin");
+            venue = event:attr("checkin").decode().pick("$.venue.name");
+            city = event:attr("checkin").decode().pick("$.venue.location.city");
+            shout = event:attr("checkin").decode().pick("$.shout");
+            created = event:attr("checkin").decode().pick("$.createdAt");
+            lat = event:attr("checkin").decode().pick("$.venue.location.lat");
+            long = event:attr("checkin").decode().pick("$.venue.location.lng");
+        }
+        event:send(subscription, "location", "notification")
+            with attrs = {
+                "venue" : venue,
+                "city" : city,
+                "shout" : shout,
+                "created" : created
+                };
     }
 }
